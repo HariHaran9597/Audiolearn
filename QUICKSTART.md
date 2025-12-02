@@ -66,7 +66,7 @@ Select from: Mixtral (fast), Llama 2 (quality), Llama 3.1 (latest)
 
 ### Step 5: Pick Language
 - English (Indian)
-- Hindi
+- Tamil
 
 ### Step 6: Name Your Speakers
 Default: Siddharth & Aditi
@@ -192,7 +192,7 @@ AudioLearn/
 ### Multi-Language Content
 1. Upload PDF
 2. Generate in English first
-3. Then regenerate in Hindi
+3. Then regenerate in Tamil
 4. Compare outputs
 
 ---
@@ -221,7 +221,7 @@ Upload same PDF twice → 80% faster second time!
 Change "Siddharth" to "Dr. Smith" → Personalized experience
 
 ### 3. Multiple Languages
-Generate in English AND Hindi → Wider audience reach
+Generate in English AND Tamil → Wider audience reach
 
 ### 4. Different Tones
 Same PDF, different tones → Versatile content
@@ -256,7 +256,7 @@ Monitor your usage → Track productivity
 |---------|-----------|-------------|
 | Model | Mixtral | Llama 3.1 |
 | Pacing | Fast 125% | Normal 100% |
-| Language | English | Hindi |
+| Language | English | Tamil |
 | Caching | Enable | Enable |
 | PDF Pages | < 30 | < 100 |
 

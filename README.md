@@ -7,7 +7,7 @@ Transform academic PDFs and documents into engaging, natural-sounding podcast co
 ### Core Features
 - **🎙️ Multi-Speaker Dialogue** - Generate natural conversations between customizable speakers
 - **🤖 Multiple AI Models** - Choose between Groq's Mixtral, Llama 2, and Llama 3.1 models
-- **🌍 Multi-Language Support** - Generate podcasts in English and Hindi with authentic regional voices
+- **🌍 Multi-Language Support** - Generate podcasts in English and Tamil with authentic regional voices
 - **🎛️ Full Customization** - Adjust tone, pacing, speaker names, and silence duration
 - **📊 Advanced Analytics** - Track your usage and generation statistics
 - **⚡ Smart Caching** - Intelligently cache generated scripts for faster generation on similar content
@@ -85,7 +85,7 @@ The application will open at `http://localhost:8501`
 ### Step 2: Configure Settings
 - **Choose AI Model**: Select your preferred Groq model (affects quality and speed)
 - **Set Tone**: Pick between Fun & Casual, Formal & Educational, or Debate Style
-- **Select Language**: Choose English or Hindi for voice synthesis
+- **Select Language**: Choose English or Tamil for voice synthesis
 - **Customize Speakers**: Enter custom names for your podcast hosts
 - **Adjust Audio Settings**:
   - Speech Pacing (Slow/Normal/Fast/Very Fast)
@@ -135,10 +135,10 @@ RETRY_DELAY=2
 - Aditi: NeerjaNeural (Female)
 - Alternatives: AmitNeural, GunjanNeural
 
-**Hindi (hi-IN)**
-- Siddharth: MadhurNeural (Male)
-- Aditi: SwaraNeural (Female)
-- Alternatives: BharatNeural, KavyaNeural
+**Tamil (ta-IN)**
+- Siddharth: ValluvarNeural (Male)
+- Aditi: JaratiNeural (Female)
+- Alternatives: GnanasekaranNeural, SaranyaNeural
 
 ## 🗂️ Project Structure
 
@@ -180,7 +180,7 @@ from src.tts import create_podcast_audio
 
 audio_file = create_podcast_audio(
     script_data,
-    language="Hindi",
+    language="Tamil",
     pacing="Slow (75%)",
     custom_speakers={
         "Dr. Smith": "hi-IN-MadhurNeural",

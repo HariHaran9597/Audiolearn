@@ -52,9 +52,9 @@ system_prompt = get_system_prompt(speaker1, speaker2, tone="Formal & Educational
 - Male: Siddharth (PrabhatNeural), Alternative: Amit (AmitNeural)
 - Female: Aditi (NeerjaNeural), Alternative: Gunjan (GunjanNeural)
 
-**Hindi**
-- Male: Madhur (MadhurNeural), Alternative: Bharat (BharatNeural)
-- Female: Swara (SwaraNeural), Alternative: Kavya (KavyaNeural)
+**Tamil**
+- Male: Valluvar (ValluvarNeural), Alternative: Gnanasekaran (GnanasekaranNeural)
+- Female: Jarati (JaratiNeural), Alternative: Saranya (SaranyaNeural)
 
 **Voice Mapping:**
 ```python
@@ -74,7 +74,7 @@ VOICE_MAPPING = {
 
 **Usage:**
 ```python
-audio = create_podcast_audio(script, language="Hindi")
+audio = create_podcast_audio(script, language="Tamil")
 ```
 
 ---
@@ -427,7 +427,7 @@ with st.expander("🔧 Advanced Settings"):
 | Feature | v1.0 | v2.0 |
 |---------|------|------|
 | Model Selection | Single (Fixed) | 3 Models |
-| Languages | English only | English + Hindi |
+| Languages | English only | English + Tamil |
 | Tone Support | ❌ | ✅ Integrated |
 | Custom Speakers | Hardcoded | Fully Customizable |
 | Audio Pacing | Fixed | 4 Presets |

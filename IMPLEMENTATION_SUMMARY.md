@@ -79,7 +79,7 @@ RETRY_DELAY=2  # Base delay
 - **Status**: Fully Implemented
 - **Languages**:
   - English (Indian English with 4 voice options)
-  - Hindi (with 4 voice options)
+  - Tamil (with 4 voice options)
 - **Voice Mapping**:
   - Siddharth: PrabhatNeural (Male)
   - Aditi: NeerjaNeural (Female)

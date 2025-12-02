@@ -39,11 +39,11 @@
         "female": ["NeerjaNeural", "GunjanNeural"]
       }
     },
-    "Hindi": {
-      "code": "hi-IN",
+    "Tamil": {
+      "code": "ta-IN",
       "voices": {
-        "male": ["MadhurNeural", "BharatNeural"],
-        "female": ["SwaraNeural", "KavyaNeural"]
+        "male": ["ValluvarNeural", "GnanasekaranNeural"],
+        "female": ["JaratiNeural", "SaranyaNeural"]
       }
     }
   },

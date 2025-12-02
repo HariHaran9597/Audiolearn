@@ -13,11 +13,11 @@ VOICE_MAPPING = {
         "Alternative1": "en-IN-AmitNeural",
         "Alternative2": "en-IN-GunjanNeural",
     },
-    "Hindi": {
-        "Siddharth": "hi-IN-MadhurNeural",
-        "Aditi": "hi-IN-SwaraNeural",
-        "Alternative1": "hi-IN-BharatNeural",
-        "Alternative2": "hi-IN-KavyaNeural",
+    "Tamil": {
+        "Siddharth": "ta-IN-ValluvarNeural",
+        "Aditi": "ta-IN-JaratiNeural",
+        "Alternative1": "ta-IN-GnanasekaranNeural",
+        "Alternative2": "ta-IN-SaranyaNeural",
     }
 }
 

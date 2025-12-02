@@ -14,7 +14,7 @@ Your AudioLearn project has been successfully upgraded from a basic MVP to a pro
 - ✅ **Exponential Backoff Retry Logic** - Automatic failure recovery with intelligent backoff
 
 ### 2️⃣ **Voice & Audio Features** (3 Features)
-- ✅ **Multi-Language Support** - English (Indian) and Hindi with authentic regional voices
+- ✅ **Multi-Language Support** - English (Indian) and Tamil with authentic regional voices
 - ✅ **Custom Speaker Names** - Fully customizable podcast hosts
 - ✅ **Advanced Audio Customization** - Pacing presets (Slow/Normal/Fast/Very Fast) and silence duration control
 
@@ -106,7 +106,7 @@ AudioLearn/
 ### Functionality
 - **15+ New Features** - Comprehensive toolkit for users
 - **50+ Config Options** - Fine-grained control
-- **2 Languages** - English and Hindi support
+- **2 Languages** - English and Tamil support
 - **3 AI Models** - Flexibility in speed vs quality
 
 ### User Experience
@@ -173,7 +173,7 @@ streamlit run app.py
 
 ### 2. Try New Features
 - 🤖 Select different AI models
-- 🎙️ Choose between English and Hindi
+- 🎙️ Choose between English and Tamil
 - 🎛️ Adjust speech pacing
 - 🎤 Use custom speaker names
 - 📊 Check analytics in sidebar
@@ -216,7 +216,7 @@ streamlit run app.py
 **Full Personalization**
 - Choose AI model (Mixtral/Llama 2/Llama 3.1)
 - Pick tone (Fun/Formal/Debate)
-- Select language (English/Hindi)
+- Select language (English/Tamil)
 - Name your speakers
 - Control pacing and silence
 
@@ -293,7 +293,7 @@ streamlit run app.py
 **Current Limitations:**
 - PDF size: Optimal < 50 pages (~100 MB)
 - Audio generation: 1-2 minutes per podcast
-- Languages: English and Hindi only (more coming)
+- Languages: English and Tamil only (more coming)
 - API: Limited by Groq account tier
 
 **No Known Issues** - Fully tested! ✅

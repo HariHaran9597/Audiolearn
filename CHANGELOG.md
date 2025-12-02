@@ -9,7 +9,7 @@
 **Core Features**
 - [x] Multiple AI Model Selection (Mixtral, Llama 2, Llama 3.1)
 - [x] Tone-aware Script Generation (Fun & Casual, Formal & Educational, Debate Style)
-- [x] Multi-language Support (English, Hindi with authentic regional voices)
+- [x] Multi-language Support (English, Tamil with authentic regional voices)
 - [x] Custom Speaker Names and Personas
 - [x] Advanced Audio Customization (Pacing, Silence Duration)
 - [x] Intelligent Script Caching (Hash-based, 7-day expiry)
@@ -68,7 +68,7 @@ src/utils.py        - Utility functions and metadata generation
 - **New Files**: 7 (3 modules + 4 docs)
 - **Features Added**: 15 major features
 - **Configuration Options**: 50+
-- **Languages Supported**: 2 (English, Hindi)
+- **Languages Supported**: 2 (English, Tamil)
 - **Supported Models**: 3 Groq models
 - **Export Formats**: 3 (JSON, TXT, MP3)
 
@@ -191,7 +191,7 @@ AudioLearn/
 | Feature | v1.0 | v2.0 |
 |---------|------|------|
 | Model Selection | ❌ | ✅ (3 models) |
-| Language Support | English only | ✅ (English + Hindi) |
+| Language Support | English only | ✅ (English + Tamil) |
 | Tone Customization | ❌ | ✅ (3 tones) |
 | Custom Speakers | Hardcoded | ✅ Fully custom |
 | Audio Pacing | Fixed | ✅ (4 presets) |
