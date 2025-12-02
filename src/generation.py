@@ -1,5 +1,6 @@
 import os
 import json
+import time
 import streamlit as st
 from groq import Groq
 from dotenv import load_dotenv
@@ -12,69 +13,127 @@ if not api_key:
     st.error("❌ Groq API Key not found! Please check your .env file.")
     st.stop()
 
+# Configuration
+MAX_RETRIES = int(os.getenv("MAX_RETRIES", 3))
+RETRY_DELAY = int(os.getenv("RETRY_DELAY", 2))
+
+# Available Groq Models
+AVAILABLE_MODELS = [
+    "mixtral-8x7b-32768",
+    "llama2-70b-4096",
+    "llama-3.1-70b-versatile",
+]
+
 # Initialize Groq Client
 client = Groq(api_key=api_key)
 
-def generate_script(text_content):
+def get_system_prompt(speaker1_name="Siddharth", speaker2_name="Aditi", tone="Fun & Casual"):
     """
-    Generates a podcast script JSON from the given text using Groq Llama 3.
+    Generates a dynamic system prompt based on tone and speaker preferences.
     """
+    tone_instructions = {
+        "Fun & Casual": "Keep it light, witty, and conversational. Use humor and casual language.",
+        "Formal & Educational": "Be precise, academic, and structured. Focus on clarity and learning outcomes.",
+        "Debate Style": "Present multiple perspectives, arguments and counter-arguments respectfully."
+    }
     
-    # 1. Strict System Prompt (Llama 3 loves structure)
-    system_prompt = """
+    tone_desc = tone_instructions.get(tone, tone_instructions["Fun & Casual"])
+    
+    system_prompt = f"""
     You are a professional podcast producer. 
-    Your job is to turn the provided technical text into an engaging, natural 5-minute conversation script between two hosts: Siddharth and Aditi.
+    Your job is to turn the provided technical text into an engaging, natural 5-minute conversation script between two hosts: {speaker1_name} and {speaker2_name}.
+    
+    TONE: {tone_desc}
     
     PERSONAS:
-    - Siddharth (Male): Enthusiastic, curious, uses Indian English idioms ("Arre", "Bas", "Exactly"). He asks the questions a beginner would ask.
-    - Aditi (Female): The subject matter expert. Calm, articulate, uses analogies. She explains things clearly to Siddharth.
+    - {speaker1_name}: Enthusiastic, curious, uses Indian English idioms ("Arre", "Bas", "Exactly"). Asks beginner-level questions.
+    - {speaker2_name}: Subject matter expert. Calm, articulate, uses analogies and real-world examples.
 
     FORMAT:
     - You MUST return a VALID JSON object.
     - The JSON must have a key "dialogue" which is a list of objects.
-    - Each object must have "speaker" and "text".
+    - Each object must have "speaker" (exact name: {speaker1_name} or {speaker2_name}) and "text".
     
     JSON STRUCTURE EXAMPLE:
-    {
+    {{
         "dialogue": [
-            {"speaker": "Siddharth", "text": "Welcome back folks! Today we have something crazy to discuss."},
-            {"speaker": "Aditi", "text": "That's right Sid. We are looking at..."}
+            {{"speaker": "{speaker1_name}", "text": "Welcome back folks! Today we have something to discuss."}},
+            {{"speaker": "{speaker2_name}", "text": "That's right. We are looking at..."}}
         ]
-    }
+    }}
     """
+    return system_prompt
 
-    # 2. User Prompt (The Content)
-    # We truncate to ~60k chars to stay safe within Groq's limits (though 70b handles 128k, output tokens are the bottleneck)
+
+def generate_script_with_retry(text_content, model="mixtral-8x7b-32768", tone="Fun & Casual", 
+                               speaker1="Siddharth", speaker2="Aditi"):
+    """
+    Generates a podcast script with exponential backoff retry logic.
+    """
+    system_prompt = get_system_prompt(speaker1, speaker2, tone)
+    
     user_content = f"""
     Here is the source text to discuss:
     {text_content[:60000]}
     
-    Generate the script now.
+    Generate the script now. Make it engaging and appropriate for a {tone.lower()} podcast.
     """
 
-    try:
-        # 3. The API Call
-        completion = client.chat.completions.create(
-            model="moonshotai/kimi-k2-instruct-0905",
-            messages=[
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_content}
-            ],
-            temperature=0.7,
-            max_tokens=8000,
-            response_format={"type": "json_object"} # <--- THE MAGIC SAUCE
-        )
-        
-        # 4. Parsing
-        response_text = completion.choices[0].message.content
-        data = json.loads(response_text)
-        
-        # Handle cases where LLM might nest it differently, though our prompt is strict
-        if "dialogue" in data:
-            return data["dialogue"]
-        else:
-            return data # Fallback if it returns a list directly
+    for attempt in range(MAX_RETRIES):
+        try:
+            progress_bar = st.progress(0)
+            status_text = st.empty()
+            
+            status_text.text(f"Attempt {attempt + 1}/{MAX_RETRIES}: Generating script with {model}...")
+            
+            completion = client.chat.completions.create(
+                model=model,
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": user_content}
+                ],
+                temperature=0.7,
+                max_tokens=8000,
+                response_format={"type": "json_object"}
+            )
+            
+            response_text = completion.choices[0].message.content
+            data = json.loads(response_text)
+            
+            progress_bar.progress(100)
+            status_text.text("✅ Script generated successfully!")
+            time.sleep(0.5)
+            progress_bar.empty()
+            status_text.empty()
+            
+            # Handle different JSON structures
+            if "dialogue" in data:
+                return data["dialogue"]
+            else:
+                return data
 
-    except Exception as e:
-        st.error(f"Error generating script with Groq: {e}")
-        return None
+        except json.JSONDecodeError as e:
+            st.warning(f"⚠️ JSON parsing error on attempt {attempt + 1}: {e}")
+            if attempt < MAX_RETRIES - 1:
+                time.sleep(RETRY_DELAY ** attempt)  # Exponential backoff
+            else:
+                st.error("❌ Failed to parse response after retries.")
+                return None
+                
+        except Exception as e:
+            st.warning(f"⚠️ API error on attempt {attempt + 1}: {str(e)[:100]}")
+            if attempt < MAX_RETRIES - 1:
+                time.sleep(RETRY_DELAY ** attempt)
+            else:
+                st.error(f"❌ Failed to generate script after {MAX_RETRIES} retries.")
+                return None
+    
+    return None
+
+
+def generate_script(text_content, model="mixtral-8x7b-32768", tone="Fun & Casual", 
+                   speaker1="Siddharth", speaker2="Aditi"):
+    """
+    Public wrapper for script generation with improved error handling.
+    """
+    return generate_script_with_retry(text_content, model, tone, speaker1, speaker2)

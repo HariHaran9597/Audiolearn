@@ -1,0 +1,100 @@
+{
+  "app": {
+    "name": "AudioLearn",
+    "version": "2.0.0",
+    "description": "Transform PDFs into engaging AI-generated podcasts",
+    "author": "HariHaran9597"
+  },
+  "models": {
+    "available": [
+      {
+        "id": "mixtral-8x7b-32768",
+        "name": "Mixtral 8x7B",
+        "description": "Balanced quality and speed",
+        "tokens": 32768,
+        "latency": "medium"
+      },
+      {
+        "id": "llama2-70b-4096",
+        "name": "Llama 2 70B",
+        "description": "Good quality, slower",
+        "tokens": 4096,
+        "latency": "slow"
+      },
+      {
+        "id": "llama-3.1-70b-versatile",
+        "name": "Llama 3.1 70B",
+        "description": "Latest, high quality",
+        "tokens": 8000,
+        "latency": "medium"
+      }
+    ],
+    "default": "mixtral-8x7b-32768"
+  },
+  "languages": {
+    "English": {
+      "code": "en-IN",
+      "voices": {
+        "male": ["PrabhatNeural", "AmitNeural"],
+        "female": ["NeerjaNeural", "GunjanNeural"]
+      }
+    },
+    "Hindi": {
+      "code": "hi-IN",
+      "voices": {
+        "male": ["MadhurNeural", "BharatNeural"],
+        "female": ["SwaraNeural", "KavyaNeural"]
+      }
+    }
+  },
+  "tones": [
+    {
+      "name": "Fun & Casual",
+      "description": "Light, witty, and conversational",
+      "emoji": "😄"
+    },
+    {
+      "name": "Formal & Educational",
+      "description": "Precise, academic, and structured",
+      "emoji": "📚"
+    },
+    {
+      "name": "Debate Style",
+      "description": "Multiple perspectives and arguments",
+      "emoji": "🎯"
+    }
+  ],
+  "pacing": {
+    "Slow (75%)": 0.75,
+    "Normal (100%)": 1.0,
+    "Fast (125%)": 1.25,
+    "Very Fast (150%)": 1.5
+  },
+  "cache": {
+    "enabled": true,
+    "max_age_days": 7,
+    "directory": ".audiolearn_cache"
+  },
+  "analytics": {
+    "enabled": true,
+    "file": ".audiolearn_analytics.json"
+  },
+  "api": {
+    "max_retries": 3,
+    "retry_delay": 2,
+    "timeout": 300,
+    "max_input_chars": 60000
+  },
+  "audio": {
+    "default_silence_ms": 300,
+    "format": "mp3",
+    "bitrate": "128k"
+  },
+  "features": {
+    "script_export": true,
+    "metadata_export": true,
+    "analytics_tracking": true,
+    "smart_caching": true,
+    "progress_tracking": true
+  }
+}

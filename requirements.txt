@@ -1,7 +1,7 @@
-streamlit
-groq
-edge-tts
-pymupdf4llm
-python-dotenv
-nest_asyncio
-pydub
+﻿streamlit>=1.28.0
+groq>=0.4.1
+edge-tts>=6.1.1
+pymupdf4llm>=0.0.12
+python-dotenv>=1.0.0
+nest-asyncio>=1.5.8
+pydub>=0.25.1
