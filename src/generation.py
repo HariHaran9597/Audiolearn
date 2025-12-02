@@ -19,9 +19,7 @@ RETRY_DELAY = int(os.getenv("RETRY_DELAY", 2))
 
 # Available Groq Models
 AVAILABLE_MODELS = [
-    "mixtral-8x7b-32768",
-    "llama2-70b-4096",
-    "llama-3.1-70b-versatile",
+    "moonshotai/kimi-k2-instruct-0905",
 ]
 
 # Initialize Groq Client
@@ -65,7 +63,7 @@ def get_system_prompt(speaker1_name="Siddharth", speaker2_name="Aditi", tone="Fu
     return system_prompt
 
 
-def generate_script_with_retry(text_content, model="mixtral-8x7b-32768", tone="Fun & Casual", 
+def generate_script_with_retry(text_content, model="moonshotai/kimi-k2-instruct-0905", tone="Fun & Casual", 
                                speaker1="Siddharth", speaker2="Aditi"):
     """
     Generates a podcast script with exponential backoff retry logic.
@@ -131,7 +129,7 @@ def generate_script_with_retry(text_content, model="mixtral-8x7b-32768", tone="F
     return None
 
 
-def generate_script(text_content, model="mixtral-8x7b-32768", tone="Fun & Casual", 
+def generate_script(text_content, model="moonshotai/kimi-k2-instruct-0905", tone="Fun & Casual", 
                    speaker1="Siddharth", speaker2="Aditi"):
     """
     Public wrapper for script generation with improved error handling.

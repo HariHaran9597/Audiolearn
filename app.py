@@ -60,7 +60,7 @@ with st.sidebar:
     selected_model = st.selectbox(
         "Choose Groq Model",
         AVAILABLE_MODELS,
-        help="Different models have different speeds and quality levels"
+        help="Using Kimi K2 Instruct - optimized for script generation"
     )
     
     # Tone Selection

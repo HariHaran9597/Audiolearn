@@ -8,28 +8,14 @@
   "models": {
     "available": [
       {
-        "id": "mixtral-8x7b-32768",
-        "name": "Mixtral 8x7B",
-        "description": "Balanced quality and speed",
-        "tokens": 32768,
-        "latency": "medium"
-      },
-      {
-        "id": "llama2-70b-4096",
-        "name": "Llama 2 70B",
-        "description": "Good quality, slower",
-        "tokens": 4096,
-        "latency": "slow"
-      },
-      {
-        "id": "llama-3.1-70b-versatile",
-        "name": "Llama 3.1 70B",
-        "description": "Latest, high quality",
+        "id": "moonshotai/kimi-k2-instruct-0905",
+        "name": "Kimi K2 Instruct",
+        "description": "Fast and reliable model with excellent JSON output",
         "tokens": 8000,
-        "latency": "medium"
+        "latency": "fast"
       }
     ],
-    "default": "mixtral-8x7b-32768"
+    "default": "moonshotai/kimi-k2-instruct-0905"
   },
   "languages": {
     "English": {
