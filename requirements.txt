@@ -1,0 +1,7 @@
+streamlit
+groq
+edge-tts
+pymupdf4llm
+python-dotenv
+nest_asyncio
+pydub
